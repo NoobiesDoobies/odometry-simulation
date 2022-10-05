@@ -11,9 +11,10 @@ class Car{
         this.maxSpeed = 5;
         this.friction = 0.05;
         this.angle = 0;
+        this.anglespeed = 2;
 
         this.control = new Control();
-        this.encoder = new Encoder(this);
+        this.encoder = new Encoder(this, w/2, 0);
     }
 
     update(){
@@ -34,10 +35,10 @@ class Car{
             this.speedy-=this.accelaration
         }
         if(this.control.rotatecw){
-            this.angle += 2;
+            this.angle += this.anglespeed;
         }
         if(this.control.rotateccw){
-            this.angle -= 2;
+            this.angle -= this.anglespeed;
         }
         if(this.speedx > this.maxSpeed){
             this.speedx = this.maxSpeed;
@@ -83,17 +84,30 @@ class Car{
     draw(ctx){
         let translateX = this.x+this.w/2
         let translateY = this.y+this.h/2
-        ctx.translate(translateX, translateY)
-        ctx.rotate(this.angle * Math.PI / 180);
-        ctx.translate(-translateX, -translateY);
-        ctx.fillStyle = "#FF0000";
-        ctx.fillRect(this.x, this.y, this.w, this.h/2);
-        ctx.fillStyle = "black";
-        ctx.fillRect(this.x, this.y+this.h/2, this.w, this.h/2)
+        // ctx.translate(translateX, translateY)
+        // ctx.rotate(this.angle * Math.PI / 180);
+        // ctx.translate(-translateX, -translateY);
+        // ctx.fillStyle = "rgba(255, 165, 0, 0.01)";
+        // ctx.fillRect(this.x, this.y, this.w, this.h/2);
+        // ctx.fillStyle = "rgba(255, 255, 255, 0.01";
+        // ctx.fillRect(this.x, this.y+this.h/2, this.w, this.h/2)
+        // ctx.translate(translateX, translateY)
+        // ctx.rotate(-this.angle * Math.PI / 180);
+        // ctx.translate(-translateX, -translateY);
+
 
         this.encoder.draw(ctx);
         
-        
+        ctx.lineWidth=5
+        ctx.strokeStyle = "green"
+        ctx.translate(translateX, translateY)
+        ctx.rotate(this.angle * Math.PI / 180);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(-this.speedx, this.speedy);        
+        ctx.stroke();
+        ctx.rotate(-this.angle * Math.PI / 180);
+        ctx.translate(-translateX, -translateY)
     }
 
     getPositionx(){

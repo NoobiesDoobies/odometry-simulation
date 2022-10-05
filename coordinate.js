@@ -10,7 +10,7 @@ class Coordinate{
        
     }
     draw(ctx){
-        ctx.linewidth=5;
+        ctx.lineWidth=1;
         ctx.strokeStyle="white";
         
         let x=0;

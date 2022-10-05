@@ -13,6 +13,7 @@ class Car{
         this.angle = 0;
 
         this.control = new Control();
+        this.encoder = new Encoder(this);
     }
 
     update(){
@@ -76,7 +77,7 @@ class Car{
        
         this.x += this.speedx * Math.sin((this.angle+90)*Math.PI/180) + this.speedy * Math.sin(this.angle*Math.PI/180);
         this.y -= this.speedx * Math.cos((this.angle+90)*Math.PI/180) + this.speedy * Math.cos(this.angle*Math.PI/180);
-        console.log(this.speed, this.speedx, this.speedy)
+        // console.log(this.speedx, this.speedy)
     }
 
     draw(ctx){
@@ -89,6 +90,9 @@ class Car{
         ctx.fillRect(this.x, this.y, this.w, this.h/2);
         ctx.fillStyle = "black";
         ctx.fillRect(this.x, this.y+this.h/2, this.w, this.h/2)
+
+        this.encoder.draw(ctx);
+        
         
     }
 
@@ -98,5 +102,17 @@ class Car{
 
     getPositiony(){
         return this.y;
+    }
+
+    getSpeedx(){
+        return this.speedx * Math.sin((this.angle+90)*Math.PI/180) + this.speedy * Math.sin(this.angle*Math.PI/180);
+    }
+
+    getSpeedy(){
+        return this.speedx * Math.cos((this.angle+90)*Math.PI/180) + this.speedy * Math.cos(this.angle*Math.PI/180);
+    }
+
+    getAngle(){
+        return this.angle;
     }
 };

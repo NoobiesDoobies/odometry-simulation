@@ -10,6 +10,7 @@ const height = 50
 
 const car = new Car((canvas.width-width )/2, (canvas.height-height)*3/4, width, height)
 const coordinate = new Coordinate()
+
 animate()
 car.draw(ctx)
 function animate(){

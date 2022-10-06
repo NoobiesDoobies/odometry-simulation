@@ -14,7 +14,9 @@ class Car{
         this.anglespeed = 2;
 
         this.control = new Control();
-        this.encoder = new Encoder(this, w/2, 0);
+        this.encoderR = new Encoder(this, w/2, 0);
+        this.encoderL = new Encoder(this, -w/2, 0);
+        this.encoderH = new Encoder(this, 0, h/2);
     }
 
     update(){
@@ -96,8 +98,9 @@ class Car{
         // ctx.translate(-translateX, -translateY);
 
 
-        this.encoder.draw(ctx);
-        
+        this.encoderL.draw(ctx);
+        this.encoderR.draw(ctx);
+        this.encoderH.draw(ctx);
         ctx.lineWidth=5
         ctx.strokeStyle = "green"
         ctx.translate(translateX, translateY)

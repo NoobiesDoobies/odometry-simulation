@@ -18,7 +18,7 @@ function animate(){
     car.update();
     ctx.save();
     
-    coordinate.draw(ctx);
+    // coordinate.draw(ctx);
     car.draw(ctx);
     
     ctx.restore();

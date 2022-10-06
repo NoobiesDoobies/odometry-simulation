@@ -15,7 +15,7 @@ class Car{
 
         this.control = new Control();
         this.encoderR = new Encoder(this, w/2, 0);
-        this.encoderL = new Encoder(this, -w/2, 0);
+        this.encoderL = new Encoder(this, -w/2, -h/2);
         this.encoderH = new Encoder(this, 0, h/2);
     }
 
@@ -86,21 +86,21 @@ class Car{
     draw(ctx){
         let translateX = this.x+this.w/2
         let translateY = this.y+this.h/2
-        // ctx.translate(translateX, translateY)
-        // ctx.rotate(this.angle * Math.PI / 180);
-        // ctx.translate(-translateX, -translateY);
-        // ctx.fillStyle = "rgba(255, 165, 0, 0.01)";
-        // ctx.fillRect(this.x, this.y, this.w, this.h/2);
-        // ctx.fillStyle = "rgba(255, 255, 255, 0.01";
-        // ctx.fillRect(this.x, this.y+this.h/2, this.w, this.h/2)
-        // ctx.translate(translateX, translateY)
-        // ctx.rotate(-this.angle * Math.PI / 180);
-        // ctx.translate(-translateX, -translateY);
+        ctx.translate(translateX, translateY)
+        ctx.rotate(this.angle * Math.PI / 180);
+        ctx.translate(-translateX, -translateY);
+        ctx.fillStyle = "rgba(255, 165, 0, 0.01)";
+        ctx.fillRect(this.x, this.y, this.w, this.h/2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.01";
+        ctx.fillRect(this.x, this.y+this.h/2, this.w, this.h/2)
+        ctx.translate(translateX, translateY)
+        ctx.rotate(-this.angle * Math.PI / 180);
+        ctx.translate(-translateX, -translateY);
 
 
         this.encoderL.draw(ctx);
         this.encoderR.draw(ctx);
-        this.encoderH.draw(ctx);
+        // this.encoderH.draw(ctx);
         ctx.lineWidth=5
         ctx.strokeStyle = "green"
         ctx.translate(translateX, translateY)
